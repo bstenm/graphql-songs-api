@@ -12,9 +12,6 @@ env:
 
 install:
   - yarn add coveralls snyk
-  # here as it scans dependencies
-  - snyk protect
-  - snyk test
 
 script:
   # send coverage to coveralls (http://coveralls.io/)
