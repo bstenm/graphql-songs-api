@@ -8,10 +8,5 @@
     "rules": {
         "trailing-comma": [true, {"multiline": "always", "singleline": "never"}]
     },
-    "rulesDirectory": [],
-    "linterOptions": {
-        "exclude": [
-            "src/mock-data.ts"
-        ]
-    }
+    "rulesDirectory": []
 }
