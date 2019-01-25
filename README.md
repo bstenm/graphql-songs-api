@@ -6,6 +6,19 @@
 ##### Note:
 This api only serves the songs metadata, the client will have to know the base path to where the song files are stored and recontructs the whole absolute path from the song name: e.g. "My Song Tilte" => https://basepath/My+Song+TItle.mp3
 
+#### Live Api
+
+Test the deployed api at that address: https://graphql-songs-api-staging.herokuapp.com/
+
+for example:
+```
+{
+      songs (artist:"jamiroquai", nb: 1){
+            title
+      }
+}
+```
+
 #### Development
 
 Launch the server in development mode, it compiles Typescript and lints your code on save:
@@ -28,8 +41,3 @@ On every push Travis CI will:
 - Run the build process
 - Deploy to the Heroku staging and production sites
 - Take a snapshot of your application dependencies for Snyk to alert you in case of any newly found vulnerabilities
-
-See result in action :
-```
-> curl -XGET -H 'Content-Type:application/graphql'  -d '{ songs{ title } }' https://graphql-songs-api-staging.herokuapp.com
-```
