@@ -26,6 +26,16 @@ Launch the server in development mode, it compiles Typescript and lints your cod
 > yarn watch
 ```
 
+Or with Docker:
+```
+> docker-compose up
+```
+
+Debug with node inspect:
+```
+> yarn watch-debug
+```
+
 #### Testing
 
 Lints your code and runs the tests with jest on save:
