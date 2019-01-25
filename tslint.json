@@ -1,0 +1,17 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended",
+        "tslint-config-prettier"
+    ],
+    "jsRules": {},
+    "rules": {
+        "trailing-comma": [true, {"multiline": "always", "singleline": "never"}]
+    },
+    "rulesDirectory": [],
+    "linterOptions": {
+        "exclude": [
+            "src/mock-data.ts"
+        ]
+    }
+}

@@ -1,0 +1,57 @@
+{
+  "name": "graphql-songs-api",
+  "version": "1.0.0",
+  "description": "An api to server a list of songs anf thrie metadata ",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bstenm/graphql-songs-api"
+  },
+  "author": "Bertrand Steinmetz",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "yarn build-ts && yarn lint",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "pretest": "yarn lint",
+    "test-watch": "yarn test --watch",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\"  \"yarn watch-ts\" \"yarn watch-node\"",
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"yarn watch-ts\" \"yarn serve-debug\"",
+    "watch-node": "NODE_ENV=development nodemon dist/index.js",
+    "test": "NODE_ENV=test jest --detectOpenHandles --forceExit",
+    "start": "NODE_ENV=production node dist/index.js",
+    "serve-debug": "NODE_ENV=development nodemon --inspect dist/index.js"
+  },
+  "devDependencies": {
+    "@types/jest": "23.3.9",
+    "@types/lodash": "4.14.118",
+    "concurrently": "4.1.0",
+    "graphql-request": "1.8.2",
+    "husky": "1.2.0",
+    "jest": "23.6.0",
+    "lint-staged": "8.1.0",
+    "nodemon": "1.18.7",
+    "ts-jest": "23.10.5",
+    "ts-node": "7.0.1",
+    "tslint": "5.11.0",
+    "tslint-config-prettier": "1.17.0"
+  },
+  "dependencies": {
+    "coveralls": "3.0.2",
+    "lodash": "4.17.11",
+    "safe-graphql-yoga": "0.0.0-semantic-release",
+    "typescript": "3.2.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "yarn lint",
+      "git add"
+    ]
+  }
+}

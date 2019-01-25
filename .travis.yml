@@ -1,0 +1,42 @@
+language: node_js
+node_js:
+  - 8
+
+cache:
+  directories:
+    - node_modules
+
+env:
+  # encrypted snyk token
+  secure: oZ8fih46AQl5kY0Rxk/wmA3fBS2rZwyJmlBZQmOk39INWPE6LpgxtNumJnNC1txMXQC7qyZbLDamdxiPrqFh8/js0bIpI1ZolAVnZ2BSPKMtc9Vx9fyLGpHkZVT/Zp/C2e+ouXXrwI+lSwIAcevj9xCx2QnxPxCKFdSt6T6/sQmdZg5jcBrJGdL1j1tHtyLB6Ugk6lc3S7jVcvCVRazaMyeXnc2+FkxHbFMfdcfUU03aOoaeObKfhcqi7PfjEYkNMFgX097JdtA/pdiaAaiSMlI6rYDc5Oo1S82SK4a3FcJ3m3PoeRJslh/orN5QPFTHMu4NcOPTMWnXHcFzk9970ap04U6/EjdfzYH/57+HvuZpIHdKLuAKsT+teJIYCqZ7v0aY79wpDeJivZCCw9rQs0kAwgc8zx4xY7sWKq6Uw9rxKI6RG+Ut0JiU+a4XDLYYS51pBA07p/CEp+n80WvIbLhCBJpsNJeFe5a0I5C+J+yC2BhfVkG6e3Agn1PkrF43HVMbyvHOlXaaPQ7sbARMQApyi1xI5zJltC7fmdyAn/OgC6Ug80e5FvZ/wGeTCW+IK6cRvSsv3QhPnmMWHxMe3zzL8a8mp6QiVgQjr11/PYNhp2aQvigJzMPlDoOlI/6sv+KD4FQV0hbItaluXZtRLPRHdOvFWsK5TXFGcd28mtg=
+
+install:
+  - yarn add coveralls snyk
+  # here as it scans dependencies
+  - snyk protect
+  - snyk test
+
+script:
+  # send coverage to coveralls (http://coveralls.io/)
+  - jest --coverage --coverageReporters=text-lcov --detectOpenHandles --forceExit | coveralls
+  - yarn build
+
+deploy:
+  provider: heroku
+  skip_cleanup: true
+  app:
+    master: graphql-songs-api-staging
+    production: graphql-songs-api-production
+  api_key:
+    # encrypted heroku api key
+    secure: q/dnPLcdxYuRLpI7h96a6qd5ZlpsXD+5zFFPlcWhDxlJOpPIQruq/JcILrgnPlvESzLMznG1Khg/oqihmGVCs+i2WU6o9pM3M/hnSQkp2lTUaCPmOL+4uk246Z63lvw1G95HnFbjmJ9x7Iq9nyLTn9mQgnTdjlnPBM6XtQDKKF9Ef3ZwzFefR5qJcELNDLApdzP9TPU5U38C1s9ySo9oWYd1ntYd1uvZrAo/Rrv2Ohl7ozh8R64ElTM3FHkoA1siWiI90E0BtY652THvjIDuzcsIm1XqFyJLYCl+gB6thbC0VoLyiHV74tk46ygZ9JPoSLE2wQHx+sdTsMJADYG19r4d46laXQyOI1DR3VxwSxmfE0zUBcIJip6uWZJcXJmd+REbPd7LVS945hEmy90efgUy0JpfXkzPH6YMVmWKYD4C6YHv0dSmp5V6IA8dgzUp852VkJG4rmSxAK5rPF/9Q3/jEnlIkWVespKVEoR0iaIbXS/bqLWO2WBlNcbi8x1XUE5irKBy0bHKfLms+baE8LN6D6uhObu2crbHv7F3bS8JKcvwa+jAMazaalvQ6SZdKBMcJnNrUYrptDm90kgFRdGYn/kN0fEr978gSxZxpWBkk0Ckn++BKWbuhSs0DqOqq1PXgvTpt6gnMeSxeLlC4E62VVJ8Sj4B2CsEyPsAVcs=
+
+after_deploy:
+  - snyk monitor
+
+notifications:
+      email:
+            recipients:
+              - bstenm@hotmail.com
+            on_success: change
+            on_failure: change
