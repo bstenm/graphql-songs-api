@@ -4,19 +4,19 @@ import server from "./server";
 
 jest.mock('./mock-data', () => [
       {
+            album: 'Album 1',
+            artist: 'Artist 1',
             id: 1,
             title: 'Title 1',
-            artist: 'Artist 1',
-            album: 'Album 1',
             year: 1968,
       },
       {
+            album: 'Album 2',
+            artist: 'Artist 2',
             id: 2,
             title: 'Title 2',
-            artist: 'Artist 2',
-            album: 'Album 2',
             year: 1994,
-      }
+      },
 ]);
 
 const host: string = `http://127.0.0.1:${port}`;

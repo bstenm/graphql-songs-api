@@ -1,6 +1,7 @@
 .vscode/
 coverage/
 node_modules/
+credentials/
 dist/
 yarn-error.log
 yarn.lock
