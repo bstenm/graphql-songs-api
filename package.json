@@ -38,7 +38,7 @@
     "tslint-config-prettier": "1.17.0"
   },
   "dependencies": {
-    "coveralls": "3.0.2",
+    "coveralls": "3.0.3",
     "lodash": "4.17.11",
     "node-fetch": "2.3.0",
     "safe-graphql-yoga": "0.0.0-semantic-release",
