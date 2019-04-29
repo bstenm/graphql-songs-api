@@ -24,7 +24,7 @@
     "serve-debug": "NODE_ENV=development nodemon --inspect dist/index.js"
   },
   "devDependencies": {
-    "@types/jest": "23.3.9",
+    "@types/jest": "24.0.12",
     "@types/lodash": "4.14.118",
     "concurrently": "4.1.0",
     "graphql-request": "1.8.2",
