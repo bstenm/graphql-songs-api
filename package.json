@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/jest": "23.3.9",
-    "@types/lodash": "4.14.118",
+    "@types/lodash": "4.14.125",
     "concurrently": "4.1.0",
     "graphql-request": "1.8.2",
     "husky": "1.2.0",
